@@ -42,13 +42,13 @@ app.get('/api/persons/:id', (req, res) => {
   }
 })
 
-app.delete('/api/persons/:id', (req, res) => {
-  const id = Number(req.params.id);
-  persons = persons.filter(person => person.id !== id);
-  res.status(204).end()
-})
+// app.delete('/api/persons/:id', (req, res) => {
+//   const id = Number(req.params.id);
+//   persons = persons.filter(person => person.id !== id);
+//   res.status(204).end()
+// })
 
-const tiny = morgan('tiny')
+// const tiny = morgan('tiny')
 
 app.post('/api/persons', (req, res) => {
   const body = req.body
@@ -67,12 +67,12 @@ app.post('/api/persons', (req, res) => {
     })
   }
 
-  tiny(req, res, () => {
-    console.log([
-      req.url,
-      JSON.stringify(req.body)
-    ].join(' '))
-  })
+  // tiny(req, res, () => {
+  //   console.log([
+  //     req.url,
+  //     JSON.stringify(req.body)
+  //   ].join(' '))
+  // })
 
   const person = {
     name: body.name,
@@ -85,6 +85,6 @@ app.post('/api/persons', (req, res) => {
   res.json(person)
 })
 
-const port = 3001
-app.listen(port)
-console.log(`Server running on port ${port}`)
+const PORT = process.env.PORT || 3001
+app.listen(PORT)
+console.log(`Server running on port ${PORT}`)
